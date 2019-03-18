@@ -1,5 +1,6 @@
 # IA_TP1
 Trabajo practico grupo IA uncuyo
+Pseudocodigo A*
 function reconstruct_path(cameFrom, current)
     total_path := {current}
     while current in cameFrom.Keys:
