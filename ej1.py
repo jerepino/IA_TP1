@@ -46,20 +46,21 @@ def heuristica(posicion_actual,posicion_fin):
 def main():
 
     posicion_inicio = [0, 0, 0, 0, 0, 0]
-    posicion_fin = [1, 2, 3, 4, 5, 6]
+    posicion_fin = [3, 3, 3, 3, 3, 3]
     g=0
     h=heuristica(posicion_inicio, posicion_fin)
     lista_abierta = list()
     lista_cerrada = list()
     vengo_de = list()
     list_hijos = list()
+    obstaculos = [[2, 2, 2, 2, 2, 2], [2, 2, 2, 2, 2, 1]]
     lista_abierta.append(copy.deepcopy(Nodo(posicion_inicio,g,h)))
-    k=0
+
     while(len(lista_abierta)>0):
 
 
         lista_abierta.sort(key=lambda nodo_: nodo_.f) # Ordeno el vector de menor a mayor f
-        # print(lista_abierta[0].f)
+
         nodo_actual = copy.deepcopy(lista_abierta[0])
 
         if nodo_actual.posicion == posicion_fin:
@@ -82,7 +83,7 @@ def main():
                     else:
                         pos_hijo[j] = pos_actual[j]
                 list_hijos.append(copy.deepcopy(pos_hijo))
-        print(len(list_hijos))
+
         g_t = nodo_actual.g + 1
         for i in range(len(list_hijos)):
 
@@ -91,11 +92,12 @@ def main():
                 continue
 
 
-            if list_hijos[i] not in lista_abierta:
-
+            if (list_hijos[i] not in lista_abierta):
+              if  list_hijos[i] in obstaculos:
+                  continue
               h = heuristica(list_hijos[i], posicion_fin)
               lista_abierta.append(copy.deepcopy(Nodo(list_hijos[i], g_t, h)))
-            elif g_t>= lista_abierta[len(lista_abierta)-1].g:
+            elif g_t >= lista_abierta[len(lista_abierta)-1].g:
                 continue
         vengo_de.append(copy.deepcopy(min(lista_abierta)))
 
