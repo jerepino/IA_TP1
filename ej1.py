@@ -1,4 +1,5 @@
 import  copy
+import  random
 class Nodo():
     def __init__(self, posicion_,g_,h_):
         self.posicion = posicion_
@@ -45,16 +46,43 @@ def heuristica(posicion_actual,posicion_fin):
 
 def main():
 
-    posicion_inicio = [0, 0, 0, 0, 0, 0]
-    posicion_fin = [3, 3, 3, 3, 3, 3]
-    g=0
-    h=heuristica(posicion_inicio, posicion_fin)
-    lista_abierta = list()
-    lista_cerrada = list()
-    vengo_de = list()
-    list_hijos = list()
-    obstaculos = [[2, 2, 2, 2, 2, 2], [2, 2, 2, 2, 2, 1]]
+    posicion_inicio = []
+    posicion_fin = []
+    obstaculos = []#[[2, 2, 2, 2, 2, 2], [2, 2, 2, 2, 2, 1]]
+    aux = []
+    for index in range(0, 6):
+        posicion_inicio.append(random.randint(0, 10))
+        posicion_fin.append(random.randint(0, 10))
+        for p in range(0, 6):
+            if posicion_inicio[index] > posicion_fin[index]:
+                aux.append(random.randint(posicion_fin[index], posicion_inicio[index]))
+            elif posicion_inicio[index] < posicion_fin[index]:
+                aux.append(random.randint(posicion_inicio[index],posicion_fin[index]))
+            else:
+                aux.append(random.randint(0, 10))
+    for p in range(0, 6):
+        obstaculos.append(copy.deepcopy([aux[p],aux[p+6],aux[p+12],aux[p+18],aux[p+24],aux[p+30]]))
+
+    print("Posicion inicial")
+    print(posicion_inicio)
+    print("Posiciion final")
+    print(posicion_fin)
+    print("Los obstaculos son:")
+
+    print(obstaculos)
+    # posicion_inicio = [0, 0, 0, 0, 0, 0]
+    # posicion_fin = [3, 3, 3, 3, 3, 3]
+
+    lista_abierta = []
+    lista_cerrada = []
+    vengo_de = []
+    list_hijos = []
+
+
+    g = 0
+    h = heuristica(posicion_inicio, posicion_fin)
     lista_abierta.append(copy.deepcopy(Nodo(posicion_inicio,g,h)))
+    vengo_de.append(copy.deepcopy(Nodo(posicion_inicio,g,h)))
 
     while(len(lista_abierta)>0):
 
