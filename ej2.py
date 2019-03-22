@@ -12,6 +12,10 @@ class Nodo:
         return self.f < nodo_.f
 
 
+    def __eq__(self, nodo_):
+        return self.posicion == nodo_
+
+
 def heuristica(pos_ac, pos_fin):
     h = 0
     for i in range(0, len(pos_ac)):
@@ -19,7 +23,7 @@ def heuristica(pos_ac, pos_fin):
     return h
 
 
-def hacer_mapa(ancho,largo):
+def hacer_mapa(largo, ancho):
 
     lista_de_cajas = []
     lista_de_cajas_2 = []
@@ -65,6 +69,7 @@ def a_estrella(mapa, inicio, fin):
                 camino.append(actual.posicion)
                 actual = actual.padre
             camino.append(actual.posicion) #agrego el nodo inicial al camino
+            camino.reverse()
             return camino
 
         lista_abierta.pop(0)
@@ -89,10 +94,10 @@ def a_estrella(mapa, inicio, fin):
                 vecino.g = nodo_actual.g + 1
                 vecino.h = heuristica(vecino.posicion,fin)
                 vecino.f = vecino.g + vecino.h
-                for recorro_lista in lista_abierta:
-                    if vecino.g > recorro_lista.g:
-                        continue
                 lista_abierta.append(vecino)
+            elif vecino.g < lista_abierta[lista_abierta.index(vecino.posicion)].g: #si esta en la lista y el valor de g para llegar a ese nodo es menor, lo remplazo
+                lista_abierta[lista_abierta.index(vecino.posicion)] = vecino
+
 
 
 
@@ -100,12 +105,12 @@ def a_estrella(mapa, inicio, fin):
 
 def main():
 
-    mapa = hacer_mapa(10, 16)
+    mapa = hacer_mapa(16, 10)
 
     inicio = (0, 0)
-    fin = (5, 5)
+    fin = (15, 8)
     objetivo = a_estrella(mapa, inicio, fin)
-    objetivo.reverse()
+
     print("El mapa del deposito es:")
     for i in range(0,len(mapa)):
         print(mapa[i])
