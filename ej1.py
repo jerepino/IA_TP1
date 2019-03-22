@@ -1,6 +1,6 @@
 import  copy
 import  random
-class Nodo():
+class Nodo:
     def __init__(self, posicion_,g_,h_):
         self.posicion = posicion_
         self.g=g_
