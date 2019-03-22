@@ -21,32 +21,33 @@ def hacer_mapa(ancho,largo):
     lista_de_cajas_2 = []
     columna=[None] * ancho
     fila = [None] * largo
-    for k in range(0,ancho-6):
+
+    for k in range(0,ancho):
         lista_de_cajas.append(k*3)
-    print(lista_de_cajas)
-    for k in range(0,4):
+
+    for k in range(0,largo):
         lista_de_cajas_2.append(k * 5)
-    print(lista_de_cajas_2)
+
     for j in range(0,largo):
         for i in range(0,ancho):
             if i in lista_de_cajas:
 
-                columna[i]=0
+                columna[i] = 0
             elif j in lista_de_cajas_2:
 
-                columna[i]=0
+                columna[i] = 0
             else:
-                columna[i]=1
-        fila.append(copy.deepcopy(columna))
+                columna[i] = 1
+        fila[j] = copy.deepcopy(columna)
 
     return fila
 
 
 def main():
-    print("in main")
+
     mapa = hacer_mapa(10, 16)
 
     for i in range(0,len(mapa)):
-        print(mapa[i], len(mapa))
+        print(mapa[i])
 if __name__ == '__main__':
    main()
