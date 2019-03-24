@@ -31,7 +31,7 @@ def hacer_mapa(largo, ancho):
     fila = [None] * largo
 
     for k in range(0,ancho):
-        lista_de_cajas.append(k*3)
+        lista_de_cajas.append(k*4)
 
     for k in range(0,largo):
         lista_de_cajas_2.append(k * 5)
@@ -105,17 +105,16 @@ def a_estrella(mapa, inicio, fin):
 
 def main():
 
-    mapa = hacer_mapa(16, 10)
-
-    inicio = (0, 0)
-    fin = (15, 8)
+    #mapa = hacer_mapa(6, 4)
+    #inicio = (0, 0)
+    #fin = (4, 3)
     objetivo = a_estrella(mapa, inicio, fin)
 
     print("El mapa del deposito es:")
     for i in range(0,len(mapa)):
         print(mapa[i])
     print("El recorrido al objetivo es:")
-    for recorre in objetivo:
-        print(recorre)
+    print(objetivo)
+
 if __name__ == '__main__':
    main()
