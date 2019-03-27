@@ -13,13 +13,11 @@ def calculo_E(estado, mapa):
     for index in range(0, len(estado)-1):
         aux_1 = estado[index]
         aux_2 = estado[index + 1]
-
         mapa[aux_2[0]][aux_2[1]] = 0
         aaa = a_star.a_estrella(mapa, aux_1, aux_2)
         # print(aaa)
         E = E + len(aaa)
         aaa.clear()
-
         mapa[aux_2[0]][aux_2[1]] = 1
     return E
 
@@ -29,31 +27,33 @@ def calculo_T(t):
     return t*alpha
 
 def recocido_simulado(actual, mapa):
+    bahia_carga = (0,0)
+    actual.estado.insert(0, bahia_carga)
+    actual.estado.append(copy.deepcopy(bahia_carga))
     actual.E = calculo_E(copy.deepcopy(actual.estado), mapa)
     t = 1000
 
     while (1):
         T = calculo_T(t)
         if T <= 0.1:
-            return actual.estado
+            return actual
         #Para generar vecinos permuto 2 valores aleatoriamente
         nuevo_aux = Nodo(copy.deepcopy(actual.estado))
-        index_1 = random.randint(0, len(nuevo_aux.estado) - 1)
-        index_2 = random.randint(0, len(nuevo_aux.estado) - 1)
+        index_1 = random.randint(1, len(nuevo_aux.estado) - 2) #El ultimo y el primer punto son la bahia de carga
+        index_2 = random.randint(1, len(nuevo_aux.estado) - 2)
         aux = nuevo_aux.estado[index_1]
         nuevo_aux.estado[index_1] = nuevo_aux.estado[index_2]
         nuevo_aux.estado[index_2] = aux
         nuevo = Nodo(copy.deepcopy(nuevo_aux.estado))
         nuevo.E = calculo_E(copy.deepcopy(nuevo.estado), mapa)
 
-        dE = actual.E-nuevo.E
+        dE = nuevo.E-actual.E
 
-        if dE > 0:
-
+        if dE < 0:
             actual = copy.deepcopy(nuevo)
-        elif 1-math.e**(-dE/T) >= random.uniform(0, 1):
-
-            actual = copy.deepcopy(nuevo)
+        if dE != 0:
+            if math.e**(-dE/T) > random.random():
+                actual = copy.deepcopy(nuevo)
         t = T
 
 
@@ -73,7 +73,7 @@ def main():
 
 
     print("la solucion")
-    print(solucion)
+    print(solucion.estado)
 
 
 
