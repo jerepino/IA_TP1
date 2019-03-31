@@ -41,7 +41,7 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
     semilla = []
     k=0
     #Poblacion Inicial
-    for index in range(0,len(lista_productos)):
+    for index in range(0, len(lista_productos)):
         semilla.append(copy.deepcopy(lista_productos[index].ubicacion))
 
     for i in range(0, tamaño_poblacion):
@@ -53,22 +53,71 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
     while k < cant_interaciones:
         #Calculo la idoneidad de mi poblacion
 
-        for index, item in enumerate(poblacion):
-            poblacion[index].idoneidad = fitness(item.estado, lista_productos, lista_ordenes, mapa)
+        # for index, item in enumerate(poblacion):
+        #     poblacion[index].idoneidad = fitness(item.estado, lista_productos, lista_ordenes, mapa)
 
         poblacion.sort(key=lambda Individuo: Individuo.idoneidad, reverse=False)
 
-        del poblacion[26:len(poblacion)] #elijo los n/2 mejores padres
-        print(len(poblacion))
+
+        del poblacion[int(tamaño_poblacion/2+1):]#elijo los n/2 mejores padres
+
         nueva_generacion = []
         #Realizo crossover debo cambiarlo
-        for i in range(0,len(poblacion)-1):
-            nueva_generacion.append(copy.deepcopy(poblacion[i]))
-            nueva_generacion.append(copy.deepcopy(poblacion[i+1]))
-            inde = random.randint(0, len(poblacion[i].estado)-1)
-            nueva_generacion[i].estado[inde:len(nueva_generacion[i].estado)] = copy.deepcopy(poblacion[i+1].estado[inde:len(poblacion[i+1].estado)])
-            nueva_generacion[i+1].estado[inde:len(nueva_generacion[i+1].estado)] = copy.deepcopy(poblacion[i].estado[inde:len(poblacion[i].estado)])
+        for i in range(0, len(poblacion)-1):
+            # nueva_generacion.append(copy.deepcopy(poblacion[i]))
+            # nueva_generacion[i].estado.clear()
+            # nueva_generacion.append(copy.deepcopy(poblacion[i+1]))
+            # nueva_generacion[i+1].estado.clear()
+            index_1 = random.randint(0, len(poblacion[i].estado))
+            index_2 = random.randint(0, len(poblacion[i].estado))
+            if index_1 > index_2:
+                auxx = index_1
+                index_1 = index_2
+                index_2 = auxx
+            elif index_1 == index_2:
+                index_1 -= 1
+
+            hijo_1 = []
+            hijo_2 = []
+            hijo_1 = poblacion[i+1].estado[index_1:index_2]#[index_1, index_2)
+            hijo_2 = poblacion[i].estado[index_1:index_2]
+            print(hijo_1)
+            print(hijo_2)
+            estado_aux_derecha = [n for n in (poblacion[i].estado) if n not in hijo_1] #incluye index_2
+            estado_aux_derecha_2 = [n for n in (poblacion[i + 1].estado) if n not in hijo_2]  # incluye index_2
+            if index_2 != 8 and index_1 != 0:
+                estado_aux_izquierda = estado_aux_derecha[len(estado_aux_derecha[index_1:]):] #(index2,fin]
+                estado_aux_izquierda_2 = estado_aux_derecha_2[len(estado_aux_derecha_2[index_1:]):]
+                del estado_aux_derecha[len(estado_aux_derecha[index_1:]):]
+                del estado_aux_derecha_2[len(estado_aux_derecha_2[index_1:]):]
+                hijo_1 = estado_aux_izquierda + hijo_1 + estado_aux_derecha
+                hijo_2 = estado_aux_izquierda_2 + hijo_2 + estado_aux_derecha_2
+            elif index_2 == 8:
+                hijo_1 = estado_aux_derecha + hijo_1
+                hijo_2 = estado_aux_derecha_2 + hijo_2
+            else:
+                hijo_1 = hijo_1 + estado_aux_derecha
+                hijo_2 = hijo_2 + estado_aux_derecha
+
+            nueva_generacion.append(Individuo(copy.deepcopy(hijo_1)))
+            nueva_generacion.append(Individuo(copy.deepcopy(hijo_2)))
+            hijo_2.clear()
+            hijo_1.clear()
+
+            print("crossover")
+            print(index_1, index_2)
+            print("padres")
+            print(poblacion[i].estado)
+            print(poblacion[i+1].estado)
+            print("hijo_1")
+            print(nueva_generacion[i*2].estado)
+            print("hijo_2")
+            print(nueva_generacion[(2*i+1)].estado)
+            print("valores izq_, derecha_")
+            print( estado_aux_izquierda,estado_aux_derecha)
+
         #Mutaciones con probabilidad del 15%
+
         for index, intem in enumerate(nueva_generacion):
             if random.random() < 0.15:
                 index_1 = random.randint(1, len(item.estado) - 1)
@@ -126,7 +175,7 @@ def main():
                 print(valo.tipo, end=' -> ')
         print("]")
 
-    solucion = AG(50, 100, lista_productos, lista_ordenes, mapa)
+    solucion = AG(10, 20, lista_productos, lista_ordenes, mapa)
     print(solucion.estado)
 if __name__ == '__main__':
            main()

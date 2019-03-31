@@ -14,23 +14,20 @@ def calculo_E(estado, mapa):
         aux_1 = estado[index]
         aux_2 = estado[index + 1]
         mapa[aux_2[0]][aux_2[1]] = 0
-        aaa = a_star.a_estrella(mapa, aux_1, aux_2)
-        # print(aaa)
-        E = E + len(aaa)
-        aaa.clear()
+        E = E + len(a_star.a_estrella(mapa, aux_1, aux_2))
         mapa[aux_2[0]][aux_2[1]] = 1
     return E
 
 
 def calculo_T(t):
-    alpha=0.99
+    alpha = 0.99
     return t*alpha
 
 def recocido_simulado(actual, mapa):
-    bahia_carga = (0,0)
+    bahia_carga = (0, 0)
     actual.estado.insert(0, bahia_carga)
-    actual.estado.append(copy.deepcopy(bahia_carga))
-    actual.E = calculo_E(copy.deepcopy(actual.estado), mapa)
+    actual.estado.append(bahia_carga)
+    actual.E = calculo_E(actual.estado, mapa)
     t = 1000
 
     while (1):
@@ -38,22 +35,21 @@ def recocido_simulado(actual, mapa):
         if T <= 0.1:
             return actual
         #Para generar vecinos permuto 2 valores aleatoriamente
-        nuevo_aux = Nodo(copy.deepcopy(actual.estado))
-        index_1 = random.randint(1, len(nuevo_aux.estado) - 2) #El ultimo y el primer punto son la bahia de carga
-        index_2 = random.randint(1, len(nuevo_aux.estado) - 2)
-        aux = nuevo_aux.estado[index_1]
-        nuevo_aux.estado[index_1] = nuevo_aux.estado[index_2]
-        nuevo_aux.estado[index_2] = aux
-        nuevo = Nodo(copy.deepcopy(nuevo_aux.estado))
-        nuevo.E = calculo_E(copy.deepcopy(nuevo.estado), mapa)
+        nuevo = Nodo(copy.deepcopy(actual.estado))
+        index_1 = random.randint(1, len(nuevo.estado) - 2) #El ultimo y el primer punto son la bahia de carga
+        index_2 = random.randint(1, len(nuevo.estado) - 2)
+        aux = nuevo.estado[index_1]
+        nuevo.estado[index_1] = nuevo.estado[index_2]
+        nuevo.estado[index_2] = aux
+        nuevo.E = calculo_E(nuevo.estado, mapa)
 
         dE = nuevo.E-actual.E
 
         if dE < 0:
-            actual = copy.deepcopy(nuevo)
+            actual = nuevo
         if dE != 0:
             if math.e**(-dE/T) > random.random():
-                actual = copy.deepcopy(nuevo)
+                actual = nuevo
         t = T
 
 
@@ -74,6 +70,7 @@ def main():
 
     print("la solucion")
     print(solucion.estado)
+    print(solucion.E)
 
 
 
