@@ -1,5 +1,7 @@
 import copy
 from math import fabs
+#import matplotlib as plt
+
 class Nodo:
     def __init__(self, posicion=None, padre=None, g=0, h=0):
         self.posicion = posicion  #es la posicion actual
@@ -17,6 +19,7 @@ class Nodo:
 
 
 def heuristica(pos_ac, pos_fin):
+    #   Distancia Manhatan
     h = 0
     for i in range(0, len(pos_ac)):
         h = h + fabs(pos_fin[i]-pos_ac[i])
@@ -105,9 +108,9 @@ def a_estrella(mapa, inicio, fin):
 
 def main():
 
-    #mapa = hacer_mapa(6, 4)
-    #inicio = (0, 0)
-    #fin = (4, 3)
+    mapa = hacer_mapa(6, 4)
+    inicio = (0, 0)
+    fin = (4, 3)
     objetivo = a_estrella(mapa, inicio, fin)
 
     print("El mapa del deposito es:")
