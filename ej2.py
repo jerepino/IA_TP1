@@ -108,9 +108,9 @@ def a_estrella(mapa, inicio, fin):
 
 def main():
 
-    mapa = hacer_mapa(6, 4)
+    mapa = hacer_mapa(6, 5)
     inicio = (0, 0)
-    fin = (4, 3)
+    fin = (4, 4)
     objetivo = a_estrella(mapa, inicio, fin)
 
     print("El mapa del deposito es:")
