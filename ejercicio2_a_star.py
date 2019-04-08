@@ -1,4 +1,5 @@
 import math
+import matplotlib as plt
 
 
 class Nodo():
@@ -69,7 +70,7 @@ def a_estrella (inicio,meta,mapa,M,N):
         #for x in range(len(lista_cerrada)):
         # print lista_cerrada[x]
 
-        print nodo_actual.x, nodo_actual.y
+        print (nodo_actual.x, nodo_actual.y)
 
         if nodo_actual.x == meta_nodo.x and nodo_actual.y == meta_nodo.y:
             return nodo_actual.x , nodo_actual.y
@@ -133,19 +134,20 @@ def main():
     M=len(mapa[0])
     N=len(mapa)
 
-    print M
-    print N
+    #print M
+    #print N
 
     inicio=[9,12]
 
-    #OJO QUE LAS COORDENADAS ESTAN INVERTIDAS
+    #OJO QUE LAS COORDENADAS ESTAN INVERT
     #EJEMPLO: meta=[2,1]  2->y 1->x
 
 
     meta=[0,0]
     camino=a_estrella(inicio,meta,mapa,M,N)
-    print "Encontraste la meta"
-    print camino
+    print ("Encontraste la meta")
+    print (camino)
+
 
 
 

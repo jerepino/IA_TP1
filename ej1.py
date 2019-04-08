@@ -1,5 +1,11 @@
 import  copy
 import  random
+import matplotlib.pyplot as plt
+from math import fabs
+
+
+
+
 class Nodo:
     def __init__(self, posicion_,g_,h_):
         self.posicion = posicion_
@@ -40,38 +46,59 @@ def heuristica(posicion_actual,posicion_fin):
 
         return h
 
+"""
+#DISTANCIA DE MANHATTAN
+def heuristica(posicion_actual, posicion_fin):
+    h = 0
+    for i in range(0, len(posicion_actual)):
+        h = h + fabs(posicion_fin[i]-posicion_actual[i])
+    return h
 
+# Chebyshev distance
+def heuristica(posicion_actual, posicion_fin):
+    h=0
+    lista = []
+    for i in range(0, len(posicion_actual)):
 
+       lista.append(fabs(posicion_fin[i]-posicion_actual[i]))
+       h=max(lista)
 
+    return h
+
+"""
 
 def main():
 
     posicion_inicio = []
     posicion_fin = []
-    obstaculos = []#[[2, 2, 2, 2, 2, 2], [2, 2, 2, 2, 2, 1]]
+    obstaculos = []
     aux = []
+
+    #Genero coordenadas de incio y fin aleatorias
+
     for index in range(0, 6):
         posicion_inicio.append(random.randint(0, 10))
         posicion_fin.append(random.randint(0, 10))
+
+        #Genero obstaculos
+
         for p in range(0, 6):
             if posicion_inicio[index] > posicion_fin[index]:
                 aux.append(random.randint(posicion_fin[index], posicion_inicio[index]))
             elif posicion_inicio[index] < posicion_fin[index]:
                 aux.append(random.randint(posicion_inicio[index],posicion_fin[index]))
-            else:
-                aux.append(random.randint(0, 10))
+            else:  #Componentes iguales
+                aux.append(random.randint(0, 10))   #Es un bucle anidado. => aux tiene 36 componentes
     for p in range(0, 6):
-        obstaculos.append(copy.deepcopy([aux[p],aux[p+6],aux[p+12],aux[p+18],aux[p+24],aux[p+30]]))
+        obstaculos.append([aux[p],aux[p+6],aux[p+12],aux[p+18],aux[p+24],aux[p+30]])
 
-    print("Posicion inicial")
+    print("Posicion inicial:")
     print(posicion_inicio)
-    print("Posiciion final")
+    print("Posiciion final:")
     print(posicion_fin)
     print("Los obstaculos son:")
 
     print(obstaculos)
-    # posicion_inicio = [0, 0, 0, 0, 0, 0]
-    # posicion_fin = [3, 3, 3, 3, 3, 3]
 
     lista_abierta = []
     lista_cerrada = []
@@ -86,6 +113,8 @@ def main():
 
     while(len(lista_abierta)>0):
 
+        #key=lambda me permite declarar que atributo utilizo como referencia para ordenar la lista
+        #En este caso la herustica
 
         lista_abierta.sort(key=lambda nodo_: nodo_.f) # Ordeno el vector de menor a mayor f
 
@@ -113,16 +142,15 @@ def main():
                 list_hijos.append(copy.deepcopy(pos_hijo))
 
         g_t = nodo_actual.g + 1
+
         for i in range(len(list_hijos)):
 
             if list_hijos[i] in lista_cerrada:
-
                 continue
-
-
             if (list_hijos[i] not in lista_abierta):
               if  list_hijos[i] in obstaculos:
                   continue
+
               h = heuristica(list_hijos[i], posicion_fin)
               lista_abierta.append(copy.deepcopy(Nodo(list_hijos[i], g_t, h)))
             elif g_t >= lista_abierta[len(lista_abierta)-1].g:
@@ -134,6 +162,16 @@ def main():
     print("El camino es")
     for j in vengo_de:
         print(j.posicion)
+
+    #Graficamos
+    a=[]
+    b=[]
+    for index, item in enumerate(vengo_de):
+        a.append(index)
+        b.append(item.f)
+    figura = plt.plot(a,b)
+    plt.show()
+
 
 
 if __name__ == '__main__':

@@ -7,6 +7,7 @@ class Producto():
     def __init__(self, tipo, ubicacion = None):
         self.tipo = tipo
         self.ubicacion = ubicacion
+
 class Individuo():
     def __init__(self, estado=None, idoneidad=0):
         self.estado = estado
@@ -234,6 +235,7 @@ def main():
                 if val == 1 or valor == 1:
                     lista_productos.append(Producto(tipo, (y, x)))
                     tipo += 1
+
     #Genero ordenes del año pasado
     lista_ordenes = []
     orden = []
@@ -267,5 +269,4 @@ def main():
     print("Tiempo de ejecucion")
     print(t_fin-t_ini)
 if __name__ == '__main__':
-           main()
-
+    main()
