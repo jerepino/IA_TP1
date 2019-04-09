@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38b13188-151b-4368-8567-af2c7f148529" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/ej1.py" beforeDir="false" afterPath="$PROJECT_DIR$/ej1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ej2.py" beforeDir="false" afterPath="$PROJECT_DIR$/ej2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ej4.py" beforeDir="false" afterPath="$PROJECT_DIR$/ej4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ejercicio2_a_star.py" beforeDir="false" afterPath="$PROJECT_DIR$/ejercicio2_a_star.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ej5.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ej3.py" beforeDir="false" afterPath="$PROJECT_DIR$/ej3.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pruevas_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/pruevas_1.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -18,7 +18,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ej1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
+            <state relative-caret-position="120">
               <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
@@ -30,8 +30,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ej3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="40" column="50" selection-start-line="39" selection-start-column="62" selection-end-line="40" selection-end-column="50" />
+            <state relative-caret-position="435">
+              <caret line="65" column="7" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
               </folding>
@@ -39,13 +39,25 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ej4.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="366">
-              <caret line="271" column="10" lean-forward="true" selection-start-line="271" selection-start-column="10" selection-end-line="271" selection-end-column="10" />
+            <state relative-caret-position="261">
+              <caret line="259" column="17" selection-start-line="259" selection-start-column="17" selection-end-line="259" selection-end-column="17" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ej5.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="201">
+              <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -54,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pruevas_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="16" />
+            <state relative-caret-position="210">
+              <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -78,10 +90,11 @@
         <option value="$PROJECT_DIR$/ej_1" />
         <option value="$PROJECT_DIR$/ej_01.py" />
         <option value="$PROJECT_DIR$/ej1.py" />
-        <option value="$PROJECT_DIR$/pruevas_1.py" />
         <option value="$PROJECT_DIR$/ej2.py" />
-        <option value="$PROJECT_DIR$/ej3.py" />
         <option value="$PROJECT_DIR$/ej4.py" />
+        <option value="$PROJECT_DIR$/ej3.py" />
+        <option value="$PROJECT_DIR$/pruevas_1.py" />
+        <option value="$PROJECT_DIR$/ej5.py" />
       </list>
     </option>
   </component>
@@ -125,28 +138,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ej4">
-    <configuration name="ej1" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="IA_TP1" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ej1.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.ej5">
     <configuration name="ej2" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="IA_TP1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,6 +202,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="ej5" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="IA_TP1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ej5.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="pruevas_1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="IA_TP1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -233,11 +246,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.ej4" />
-        <item itemvalue="Python.ej3" />
-        <item itemvalue="Python.ej2" />
+        <item itemvalue="Python.ej5" />
         <item itemvalue="Python.pruevas_1" />
-        <item itemvalue="Python.ej1" />
+        <item itemvalue="Python.ej3" />
+        <item itemvalue="Python.ej4" />
+        <item itemvalue="Python.ej2" />
       </list>
     </recent_temporary>
   </component>
@@ -272,7 +285,7 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996277" visible="true" weight="0.20226537" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996277" visible="true" weight="0.34951457" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.39805827" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -328,7 +341,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ej1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
+        <state relative-caret-position="120">
           <caret line="11" column="17" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
@@ -336,29 +349,39 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pruevas_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="22" column="10" lean-forward="true" selection-start-line="22" selection-start-column="10" selection-end-line="22" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ej3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="40" column="50" selection-start-line="39" selection-start-column="62" selection-end-line="40" selection-end-column="50" />
+        <state relative-caret-position="435">
+          <caret line="65" column="7" selection-start-line="65" selection-start-column="7" selection-end-line="65" selection-end-column="7" />
           <folding>
             <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pruevas_1.py">
+    <entry file="file://$PROJECT_DIR$/ej4.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="14" selection-end-line="2" selection-end-column="16" />
+        <state relative-caret-position="261">
+          <caret line="259" column="17" selection-start-line="259" selection-start-column="17" selection-end-line="259" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ej4.py">
+    <entry file="file://$PROJECT_DIR$/ej5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="271" column="10" lean-forward="true" selection-start-line="271" selection-start-column="10" selection-end-line="271" selection-end-column="10" />
+        <state relative-caret-position="201">
+          <caret line="19" column="96" selection-start-line="19" selection-start-column="96" selection-end-line="19" selection-end-column="96" />
           <folding>
-            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -53,6 +53,7 @@ def recocido_simulado(actual, mapa,t=200):
 
         elif dE > 0:
             if math.e**(-dE/T) > random.random():
+                # print(math.e**(-dE/T))
                 # print("Salto a peor estado")
                 actual = nuevo
         # print("E Acutal")
@@ -61,7 +62,7 @@ def recocido_simulado(actual, mapa,t=200):
             mejor_nodo = actual
         # print("E Mejor nodo")
         # print(mejor_nodo.E)
-
+        # print(t)
         t = T
 
 #Agregar print para demostrar que va disminuyendo la energia
