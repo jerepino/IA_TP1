@@ -52,8 +52,8 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
     #Poblacion Inicial
 
     au = lista_productos[0].ubicacion
-    lista_productos[0].ubicacion = lista_productos[-1].ubicacion
-    lista_productos[-1].ubicacion = au
+    lista_productos[0].ubicacion = lista_productos[1].ubicacion
+    lista_productos[1].ubicacion = au
     # print(lista_productos[0].tipo, lista_productos[0].ubicacion, lista_productos[-1].ubicacion)
 
     for index in range(1, len(lista_productos)):
@@ -241,9 +241,9 @@ def main():
     orden = []
     # orden = [n for index, n in enumerate(lista_productos) if index < 4]
     # lista_ordenes.append(orden)
-    for j in range(0, 1):
-        for i in range(0, random.randint(1, 8)):
-            if random.random() < 0.40:
+    for j in range(0, 2):
+        for i in range(0, random.randint(5, 10)):
+            if random.random() < 0.20:
                 orden.append(copy.deepcopy(lista_productos[0])) #El producto 0 tiene 35% de probabilidad de ser elegido
             else:
                 orden.append(copy.deepcopy(random.choice(lista_productos)))
@@ -261,9 +261,9 @@ def main():
                 print(valo.tipo, end=' -> ')
         print("]")
 
-    solucion = AG(10, 25, lista_productos, lista_ordenes, mapa)
+    solucion = AG(10, 30, lista_productos, lista_ordenes, mapa)
 
-    print(solucion.estado, solucion.idoneidad, len(solucion.estado))
+    print(solucion.estado, solucion.idoneidad)
 
     t_fin = time()
     print("Tiempo de ejecucion")
