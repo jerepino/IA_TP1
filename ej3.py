@@ -79,7 +79,7 @@ def main():
                     posicion_paquetes.append((y, x))
 
 
-    # posicion_paquetes = random.sample(posicion_paquetes, k=random.randint(0,len(posicion_paquetes)))
+    #posicion_paquetes = random.sample(posicion_paquetes, k=random.randint(0,len(posicion_paquetes)))
 
     posicion_paquetes = [(1,1), (8,7), (2,5), (8,3), (2,3), (9,5), (1,1), (1,1), (6,5), (1,1), (4,5), (1,1)]
     print(posicion_paquetes)
