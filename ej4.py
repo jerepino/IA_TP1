@@ -44,7 +44,7 @@ def fitness(individuo, lista_productos, lista_ordenes, mapa):
     return f
 
 
-def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa):
+def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa,arc):
     print("En algo genetico")
     poblacion = []
     semilla = []
@@ -82,16 +82,16 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
         poblacion.sort(key=lambda Individuo: Individuo.idoneidad)
         vector_fitness_mejor_hijo.append(copy.deepcopy(poblacion[0].idoneidad))
         vector_fitness.append(promedio_fitness)
-        print("promedio fitness")
-        print(promedio_fitness)
+        # print("promedio fitness")
+        # print(promedio_fitness)
         # print("individuo 1")
         # print(poblacion[0].estado)
-        print("fitness individuo 1")
-        print(poblacion[0].idoneidad)
-        print("iteracion")
-        print(k)
-        print(" posicion producto 0")
-        print(poblacion[0].estado[0])
+        # print("fitness individuo 1")
+        # print(poblacion[0].idoneidad)
+        # print("iteracion")
+        # print(k)
+        # print(" posicion producto 0")
+        # print(poblacion[0].estado[0])
 
         # print("largo pobracion")
         # print(len(poblacion))
@@ -99,8 +99,15 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
         # for i in poblacion:
         #     print(i.estado, i.idoneidad)
         # print("-----------------")
-
-
+        if k%4 == 0:
+            arc.write("fitness mejor individuo: \n")
+            arc.write(str(poblacion[0].idoneidad))
+            arc.write("\n")
+            arc.write("Iteracion \n")
+            arc.write(str(k))
+            arc.write("Posicion producto 0: \n")
+            arc.write(str(poblacion[0].estado[0]))
+            arc.write("\n")
         if k >= cant_interaciones:
             break
         del poblacion[int(tamaño_poblacion/2+1):]#elijo los n/2 mejores padres
@@ -184,15 +191,21 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
                 nueva_generacion[index].estado[pos_2] = auxiliar
                 # print("El resultado de la mutacion es")
                 # print(nueva_generacion[index].estado)
-        # print(len(poblacion), len(nueva_generacion))
+
         poblacion.clear()
         # print("nueva gene",len(nueva_generacion))
         poblacion = copy.deepcopy(nueva_generacion)
+        # print(len(poblacion))
         nueva_generacion.clear()
 
         k+=1
-    print(vector_fitness)
-    print(vector_fitness_mejor_hijo)
+    arc.write("El vector de promedio de fitness: \n")
+    arc.write(str(vector_fitness))
+    arc.write("\n")
+    arc.write(str(vector_fitness_mejor_hijo))
+    arc.write("\n")
+
+
 
     fig, axes = plt.subplots()
 
@@ -202,9 +215,9 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
 
     axes.set_title('Fitness almacen')
 
-    plt.plot([n for n in range(0,len(vector_fitness))],vector_fitness, label="Fitness promedio")
+    plt.plot([n for n in range(0, len(vector_fitness))],vector_fitness, label="Fitness promedio")
 
-    plt.plot([n for n in range(0,len(vector_fitness_mejor_hijo))],vector_fitness_mejor_hijo, label="Mejor Fitness")
+    plt.plot([n for n in range(0, len(vector_fitness_mejor_hijo))],vector_fitness_mejor_hijo, label="Mejor Fitness")
 
     plt.legend()
 
@@ -220,12 +233,13 @@ def AG(tamaño_poblacion,cant_interaciones, lista_productos, lista_ordenes, mapa
 
 def main():
     t_ini = time()
+    arc = open("AG.txt", "w")
     #Genero layout
     mapa = simulated_annealing.a_star.hacer_mapa(6, 5)
-    print("El mapa del deposito es:")
+    arc.write("El mapa del deposito es:\n")
     for i in range(0, len(mapa)):
-        print(mapa[i])
-
+        arc.write(str(mapa[i]))
+        arc.write("\n")
     #Genero lista de productos
     lista_productos = []
     tipo = 0
@@ -241,9 +255,9 @@ def main():
     orden = []
     # orden = [n for index, n in enumerate(lista_productos) if index < 4]
     # lista_ordenes.append(orden)
-    for j in range(0, 2):
-        for i in range(0, random.randint(5, 10)):
-            if random.random() < 0.20:
+    for j in range(0, 1):
+        for i in range(0, random.randint(5, 12)):
+            if random.random() < 0.30:
                 orden.append(copy.deepcopy(lista_productos[0])) #El producto 0 tiene 35% de probabilidad de ser elegido
             else:
                 orden.append(copy.deepcopy(random.choice(lista_productos)))
@@ -251,22 +265,32 @@ def main():
         lista_ordenes.append(copy.deepcopy(orden))
         orden.clear()
 
-    print("Las ordenes del ultimo año fueron:")
+    arc.write("Las ordenes del ultimo año fueron:\n")
     for index, valor in enumerate(lista_ordenes):
-        print("[", end=' ')
+        # print("[", end=' ')
+        arc.write("[ ")
         for ind, valo in enumerate(valor):
             if ind == (len(valor)-1):
-                print(valo.tipo, end=' ')
+                # print(valo.tipo, end=' ')
+                arc.write(str(valo.tipo))
             else:
-                print(valo.tipo, end=' -> ')
-        print("]")
+                # print(valo.tipo, end=' -> ')
+                arc.write(str(valo.tipo))
+                arc.write("-> ")
+        arc.write("] \n")
 
-    solucion = AG(10, 30, lista_productos, lista_ordenes, mapa)
+    solucion = AG(6, 26, lista_productos, lista_ordenes, mapa,arc)
 
     print(solucion.estado, solucion.idoneidad)
-
+    arc.write("La solucion es: \n")
+    arc.write(str(solucion.estado))
+    arc.write(", ")
+    arc.write(str(solucion.idoneidad))
+    arc.write("\n")
     t_fin = time()
-    print("Tiempo de ejecucion")
-    print(t_fin-t_ini)
+    arc.write("Tiempo de ejecucion \n")
+    t__ = t_fin-t_ini
+    arc.write(str(t__))
+    arc.close()
 if __name__ == '__main__':
     main()
